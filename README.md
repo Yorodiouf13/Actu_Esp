@@ -2,9 +2,7 @@
 
 Ce repository GitHub regroupe tout le projet **ESP News**, décliné en plusieurs applications, chacune gérée dans une branche dédiée.
 
----
-
-## 🚀 Branches du projet
+##  Branches du projet
 
 | Branche              | Description |
 |----------------------|-------------|
@@ -13,7 +11,6 @@ Ce repository GitHub regroupe tout le projet **ESP News**, décliné en plusieur
 | `app_client_console` |  **Application console Python** qui consomme les web services (authentification, listing, gestion) |
 | `app_client_desktop` |  **Application Desktop PyQt5** pour gérer les actualités et utilisateurs via GUI en Python |
 
----
 
 ##  Détails des projets
 
@@ -27,7 +24,7 @@ Ce repository GitHub regroupe tout le projet **ESP News**, décliné en plusieur
 - Base de données MySQL (ex : `mglsi_news`)
 - Design responsive inspiré des sites d’actualités (France24, etc.)
 
-➡️ Accès principal : `http://localhost/esp_news_mvc`
+➡ Accès principal : `http://localhost/esp_news_mvc`
 
 ---
 
@@ -37,7 +34,7 @@ Ce repository GitHub regroupe tout le projet **ESP News**, décliné en plusieur
   - REST (ex : `GET /articles`, `GET /categories`)
 - Utilisé par les clients Python pour récupérer ou manipuler les données.
 
-➡️ Accès : `http://localhost/esp_news_webservices`
+➡ Accès : `http://localhost/esp_news_webservices`
 
 ---
 
@@ -51,18 +48,21 @@ Ce repository GitHub regroupe tout le projet **ESP News**, décliné en plusieur
 ```bash
 python client.py
 
-###  `app_client_desktop` — Application Desktop PyQt
-Interface Graphique (GUI) réalisée avec PyQt5.
+---
+
+### `app_client_desktop` — Application Desktop PyQt
+
+Interface Graphique (GUI) réalisée avec **PyQt5**.
+
 Permet de :
 - Se connecter (login)
 - Voir un dashboard admin
 - Gérer utilisateurs et articles
 - Consomme les mêmes web services SOAP & REST.
-- Exécution :
+
+---
+
+#### Exécution
 ```bash
 python app.py
 
-# Auteurs
-Oumar Yoro Diouf
-Maman Nafy Ndiaye
-Mouhamed Abdourahmane Ndiaye
