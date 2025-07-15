@@ -9,7 +9,7 @@
           <?= htmlspecialchars($first['libelle']) ?> — 
           <?= date('d/m/Y', strtotime($first['dateCreation'])) ?>
         </p>
-        <p><?= substr(strip_tags($first['contenu']), 0, 200) ?>…</p>
+        <p><?= substr(strip_tags($first['contenu']), 0, 190) ?>…</p>
       </div>
     </a>
   <?php endif; ?>

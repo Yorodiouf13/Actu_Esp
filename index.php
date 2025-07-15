@@ -49,6 +49,7 @@ switch ($controller) {
                 require_once './app/views/404.php';
         }
         break;
+        
     case 'home':
         require_once './app/controllers/homeController.php';
         $homeController = new HomeController();
@@ -63,6 +64,35 @@ switch ($controller) {
         require_once './app/controllers/categorieController.php';
         $categorieController = new CategorieController();
         $categorieController->index($id);
+        break;
+    case 'editor':
+        require_once './app/controllers/editorController.php';
+        $editorController = new EditorController();
+        switch ($action) {
+            case 'index':
+                $editorController->dashboard();
+                break;
+            case 'create':
+                if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                    $editorController->create();
+                } else {
+                    $editorController->store();
+                }
+                break;
+            case 'edit':
+                if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                    $editorController->edit($id);
+                } else {
+                    $editorController->update($id);
+                }
+                break;
+            case 'delete':
+                $editorController->delete($id);
+                break;
+            default:
+                http_response_code(404);
+                require_once './app/views/404.php';
+        }
         break;
     default:
         http_response_code(404);

@@ -32,6 +32,11 @@ $navCats = $categoryModel->getAllCategories();
   <nav class="site-nav container" id="siteNav">
     <ul class="nav-list">
       <li><a href="/esp_news_mvc/index.php">Accueil</a></li>
+      <?php if ($_SESSION['role'] === 'editor'): ?>
+        <li>
+            <a class="nav-link" href="?controller=editor&action=index">Mon espace éditeur</a>
+        </li>
+      <?php endif; ?>  
       <?php foreach ($navCats as $cat): ?>
         <li>
           <a href="/esp_news_mvc/index.php?controller=categorie&action=index&id=<?= $cat['id'] ?>">

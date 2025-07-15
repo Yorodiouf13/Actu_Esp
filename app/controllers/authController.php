@@ -31,7 +31,11 @@ class AuthController {
             
             if ($_SESSION['role'] === 'admin') {
                 header('Location: ?controller=admin&action=index');
-            } else {
+            }
+            elseif ($_SESSION['role'] === 'editor') {
+                header('Location: ?controller=editor&action=index');
+            } 
+            else {
                 header('Location: ?controller=home&action=index');
             }
             exit;

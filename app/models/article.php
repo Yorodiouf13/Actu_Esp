@@ -53,5 +53,26 @@ class Article {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getArticlesByAuthor($authorId) {
+        $stmt = $this->pdo->prepare("SELECT a.*, c.libelle FROM Article a JOIN Categorie c ON a.categorie = c.id WHERE a.auteur = ? ORDER BY a.dateCreation DESC");
+        $stmt->execute([$authorId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function create($title, $content, $authorId, $categoryId) {
+        $stmt = $this->pdo->prepare("INSERT INTO Article (titre, contenu, auteur, categorie, dateCreation) VALUES (?, ?, ?, ?, NOW())");
+        return $stmt->execute([$title, $content, $authorId, $categoryId]);
+    }
+
+    public function update($id, $title, $content, $categoryId) {
+        $stmt = $this->pdo->prepare("UPDATE Article SET titre = ?, contenu = ?, categorie = ? WHERE id = ?");
+        return $stmt->execute([$title, $content, $categoryId, $id]);
+    }
+
+    public function delete($id) {
+        $stmt = $this->pdo->prepare("DELETE FROM Article WHERE id = ?");
+        return $stmt->execute([$id]);
+    }
+
 }
 ?>
