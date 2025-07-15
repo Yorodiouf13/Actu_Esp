@@ -1,10 +1,16 @@
 <?php
 require_once __DIR__ . '/../models/user.php';
 
-
 class SoapUserService
 {
-    private $tokenValid = "1234567890SECRET"; // À remplacer par vraie gestion de tokens
+    private $tokenValid = "1234567890SECRET"; 
+
+    private function checkToken($token)
+    {
+        if ($token !== $this->tokenValid) {
+            throw new SoapFault("Client", "Token invalide ou manquant");
+        }
+    }
 
     public function authenticate($login, $password)
     {
@@ -22,38 +28,34 @@ class SoapUserService
 
     public function listUsers($token)
     {
-        if ($token !== $this->tokenValid) {
-            return [];
-        }
+        $this->checkToken($token);
+
         $userModel = new User();
         return $userModel->all(); 
     }
 
     public function addUser($token, $login, $password, $role = "visitor")
     {
-        if ($token !== $this->tokenValid) {
-            return false;
-        }
+        $this->checkToken($token);
+
         $userModel = new User();
         return $userModel->create($login, $password, $role);
     }
 
     public function deleteUser($token, $id)
     {
-        if ($token !== $this->tokenValid) {
-            return false;
-        }
+        $this->checkToken($token);
+
         $userModel = new User();
-        return $userModel->delete($id); // À implémenter dans User.php
+        return $userModel->delete($id); 
     }
 
     public function updateUser($token, $id, $login, $role)
     {
-        if ($token !== $this->tokenValid) {
-            return false;
-        }
+        $this->checkToken($token);
+
         $userModel = new User();
-        return $userModel->update($id, $login, $role); // À implémenter dans User.php
+        return $userModel->update($id, $login, $role); 
     }
 }
 ?>
